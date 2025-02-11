@@ -9,6 +9,24 @@ import jakarta.persistence.Persistence;
 public class Main {
     public static void main(String[] args) {
         //basic_execute();
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        tx.begin();
+
+        try{
+            Member member = new Member();
+
+            tx.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            tx.rollback();
+        }finally {
+            em.close();
+        }
+        emf.close();
     }
 
     public static void basic_execute(){

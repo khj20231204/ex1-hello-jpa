@@ -38,4 +38,8 @@ public class Member {
      */
     @Lob
     private String description;
+
+    /* db와 관계없이 필드로만 사용하고 싶디 */
+    @Transient
+    private int tems;
 }
