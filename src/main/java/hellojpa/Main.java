@@ -9,6 +9,7 @@ import jakarta.persistence.Persistence;
 public class Main {
     public static void main(String[] args) {
         //basic_execute();
+        //columnMapping();
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
@@ -17,7 +18,43 @@ public class Main {
         tx.begin();
 
         try{
-            Member member = new Member();
+
+            Member_pk mp = new Member_pk();
+            //mp.setId("ID_A");
+            mp.setName("C");
+            em.persist(mp);
+            mp.setName("DA");
+            em.persist(mp);
+
+            tx.commit();
+
+        } catch (Exception e) {
+            tx.rollback();
+            throw new RuntimeException(e);
+        }finally {
+            em.close();
+        }
+        emf.close();
+
+    }
+
+    public static void columnMapping(){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        tx.begin();
+
+        try{
+            //Member member = new Member();
+            //member.setId(2);
+            Member member = em.find(Member.class, 2);
+            member.setUsername("변경 했쬬");
+
+            //GUEST가 왜 에러나는지 모르겠다
+            member.setRoleType(RoleType.GUEST);
+
+            em.persist(member);
 
             tx.commit();
         }catch (Exception e){
