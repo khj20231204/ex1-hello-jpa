@@ -55,6 +55,34 @@ public class Main {
             findmember.setTeam(newTeam); //setTeam으로 그냥 team을 입력하면 끝
             */
 
+            /*
+            현재 연관관계 주인은 N:1 관계의 N(1을 포함하고 있다)이다. 따라서 member가 연관관계의 주인이다
+            team2에 member2를 삽입했을 때 정상적으로 값이 입력되지 않는다
+            
+            MemberOfTeam2 member2 = new MemberOfTeam2();
+            member2.setName("member2");
+            em.persist(member2);
+
+            Team2 team2 = new Team2();
+            team2.setName("TeamB");
+            team2.getMembers2().add(member2); //그런데 team2에 member2를 삽입했다
+            em.persist(team2);
+
+            결과 : 정상 삽입이 되지 않는다
+            */
+
+            /*
+            연관관계의 주인인 member에 team을 삽입한다
+            */
+            Team2 team2 = new Team2();
+            team2.setName("TeamB");
+            em.persist(team2);
+
+            MemberOfTeam2 member2 = new MemberOfTeam2();
+            member2.setName("member2");
+            member2.setTeam(team2);  //연관관계의 주인인 member에 team을 삽입
+            em.persist(member2);
+
             tx.commit();
 
         } catch (Exception e) {

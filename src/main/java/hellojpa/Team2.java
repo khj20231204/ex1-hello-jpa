@@ -14,8 +14,13 @@ public class Team2 {
    @Id @GeneratedValue
    private Long id;
    private String name;
-   
-   @OneToMany(mappedBy= "team") //1:N 연결에서 Team2가 어디랑 연결되어 있는지 알려주는 명령어 mappedBy
+
+   /*
+   @OneToMany(mappedBy = "team")에서 mappedBy = "team"의 "team"은 MemberOfTeam2 엔티티에 있는 team 필드를 의미합니다.
+   즉, MemberOfTeam2 클래스 내부에 @ManyToOne 관계로 선언된 team 필드가 있어야 합니다.
+   1:N 연결에서 Team2가 어디랑 연결되어 있는지 알려주는 명령어 - mappedBy
+   */
+   @OneToMany(mappedBy= "team") 
    private List<MemberOfTeam2> members2 = new ArrayList<>();
 
    public Long getId() {

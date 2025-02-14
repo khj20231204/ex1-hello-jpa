@@ -22,7 +22,7 @@ class MemberOfTeam2{
 
    @ManyToOne //MemberOfTeam입장 To Team입장
    @JoinColumn(name = "TEAM_ID")  //Join하는 컬럼이 TEAM_ID이다. 이 TEAM_ID는 DB에 존재하는 컬럼.
-   private Team team;
+   private Team2 team;
 
    public Long getId() {
       return id;
@@ -48,11 +48,11 @@ class MemberOfTeam2{
       this.age = age;
    }
 
-   public Team getTeam() {
+   public Team2 getTeam() {
       return team;
    }
 
-   public void setTeam(Team team) {
+   public void setTeam(Team2 team) {
       this.team = team;
    }
 
