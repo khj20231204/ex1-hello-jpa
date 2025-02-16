@@ -55,6 +55,4 @@ class MemberOfTeam2{
    public void setTeam(Team2 team) {
       this.team = team;
    }
-
-   
 }

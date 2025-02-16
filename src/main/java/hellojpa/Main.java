@@ -1,5 +1,7 @@
 package hellojpa;
 
+import java.util.List;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -82,6 +84,35 @@ public class Main {
             member2.setName("member2");
             member2.setTeam(team2);  //연관관계의 주인인 member에 team을 삽입
             em.persist(member2);
+
+            Team_ex team_ex = new Team_ex();
+            team_ex.setName("team");
+            em.persist(team_ex);
+
+            
+            Member_ex member_ex = new Member_ex();
+            member_ex.setName("member");
+            member_ex.setTeam_ex(team_ex);
+            em.persist(member_ex);
+            
+            em.flush();
+            em.clear();
+
+            team_ex.getMembers().add(member_ex);
+
+            Team_ex teamlist = em.find(Team_ex.class, team_ex.getId());
+            List<Member_ex> memberlist = teamlist.getMembers();
+            for(Member_ex m : memberlist){
+                System.out.println("-------------------"+m.getName());
+            }
+
+            MemberOfTeam2 findMember2 = em.find(MemberOfTeam2.class, member2.getId());
+            List<MemberOfTeam2> member2_list = findMember2.getTeam().getMembers2();
+
+            for(MemberOfTeam2 t2 : member2_list){
+                System.out.println(t2.getTeam().getName());
+            }
+
 
             tx.commit();
 

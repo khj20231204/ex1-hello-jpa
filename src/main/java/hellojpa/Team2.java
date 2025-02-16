@@ -21,7 +21,7 @@ public class Team2 {
    1:N 연결에서 Team2가 어디랑 연결되어 있는지 알려주는 명령어 - mappedBy
    */
    @OneToMany(mappedBy= "team") 
-   private List<MemberOfTeam2> members2 = new ArrayList<>();
+   private List<MemberOfTeam2> members2 = new ArrayList<>(); 
 
    public Long getId() {
       return id;
