@@ -42,4 +42,10 @@ public class Team_ex {
    public void setMembers(List<Member_ex> members) {
       this.members = members;
    }
+
+   public void addMember(Member_ex member_ex) {
+      member_ex.setTeam_ex(this);
+      this.members.add(member_ex);
+   }
+
 }

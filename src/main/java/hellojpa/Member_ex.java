@@ -54,5 +54,16 @@ public class Member_ex {
         this.team_ex = team_ex;
     }
 
+    public void changeTeam(Team_ex team_ex) {
+        this.team_ex = team_ex;
+
+        team_ex.getMembers().add(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Member_ex [id=" + id + ", name=" + name + ", age=" + age + ", team_ex=" + team_ex + "]";
+    }
+
     
 }

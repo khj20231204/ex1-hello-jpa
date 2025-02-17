@@ -92,13 +92,19 @@ public class Main {
             
             Member_ex member_ex = new Member_ex();
             member_ex.setName("member");
-            member_ex.setTeam_ex(team_ex);
+            
+            //member_ex.setTeam_ex(team_ex);
+            //연관관계 편의 메서드 생성
+            member_ex.changeTeam(team_ex);
+            
             em.persist(member_ex);
             
             em.flush();
             em.clear();
 
-            team_ex.getMembers().add(member_ex);
+            //team_ex.getMembers().add(member_ex);
+            //연관관계 편의 메서드 생성
+            //team_ex.addMember(member_ex);
 
             Team_ex teamlist = em.find(Team_ex.class, team_ex.getId());
             List<Member_ex> memberlist = teamlist.getMembers();
@@ -113,7 +119,10 @@ public class Main {
                 System.out.println(t2.getTeam().getName());
             }
 
-
+            System.out.println("======================");
+            System.out.println(team_ex);
+            System.out.println("======================");
+            
             tx.commit();
 
         } catch (Exception e) {
