@@ -1,18 +1,34 @@
 package hellojpa;
 
-import jakarta.persistence.*;
-
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Member {
 
-    @Id
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private int id;
 
     //객체는 username, DB명은 name
-    @Column(name="name")
-    private String username;
+    @Column(name="USERNAME")
+    private String name;
+
+    @OneToMany(mappedBy = "member")
+    private List<Order> order = new ArrayList<>();
 
     //Integer와 가장 비슷한 타입이 DB에서 선택 됨
     private Integer age;
@@ -52,11 +68,11 @@ public class Member {
     }
 
     public String getUsername() {
-        return username;
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String name) {
+        this.name = name;
     }
 
     public Integer getAge() {
