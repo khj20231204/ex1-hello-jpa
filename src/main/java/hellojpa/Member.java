@@ -28,7 +28,7 @@ public class Member {
     private String name;
 
     @OneToMany(mappedBy = "member")
-    private List<Order> order = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     //Integer와 가장 비슷한 타입이 DB에서 선택 됨
     private Integer age;

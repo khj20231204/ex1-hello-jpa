@@ -2,6 +2,7 @@ package hellojpa;
 
 import java.util.List;
 
+import hellojpa.domain.Movie;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -123,7 +124,22 @@ public class Main {
             System.out.println(team_ex);
             System.out.println("======================");
             
+            Movie movie = new Movie();
+            movie.setDirector("director");
+            movie.setActor("actor");
+            movie.setName("바람과 함께 사라지다");
+            movie.setPrice(10000);
+            
+            em.persist(movie);
+
+            em.flush();
+            em.clear();
+
+            Movie findMovie = em.find(Movie.class, movie.getId());
+            System.out.println(findMovie);
+
             tx.commit();
+
 
         } catch (Exception e) {
             tx.rollback();

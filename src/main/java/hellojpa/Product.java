@@ -19,5 +19,5 @@ public class Product {
    private String name;
 
    @OneToMany(mappedBy = "product")
-   private List<Order> order = new ArrayList<>();
+   private List<Order> orders = new ArrayList<>();
 }
