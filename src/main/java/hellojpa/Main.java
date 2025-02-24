@@ -180,7 +180,10 @@ public class Main {
     }
 
     public static void basic_execute(){
+        
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+        //persistence.xml파일의 <persistence-unit name="hello"> unit name과 일치해야 한다
+
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
 
